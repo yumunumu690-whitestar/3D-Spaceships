@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mother Spaceship - Model Görüntüleyici</title>
+    
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    
+    <style>
+        body { 
+            margin: 0; 
+            background-color: #2e2e2e; /* Arka plan rengi */
+        }
+        model-viewer { 
+            width: 100vw; 
+            height: 100vh; /* Ekranı tam kapla */
+        }
+    </style>
+</head>
+<body>
+    <model-viewer
+        src="./mother_spaceship.glb" 
+        alt="Ana Uzay Gemisi" 
+        camera-controls 
+        auto-rotate
+        shadow-intensity="1" 
+        exposure="1.2"
+    ></model-viewer>
+</body>
+</html>
