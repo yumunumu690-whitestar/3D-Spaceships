@@ -2,32 +2,28 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Üç Uzay Gemisi Modeli</title>
+    <title>Sekmeli 3D Model Görünümü - Son Versiyon</title>
     
-    <script type="module" src="https://unpkg.com/@google/model-viewer@1.13.0/dist/model-viewer.min.js"></script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     
     <style>
         body { 
-            margin: 0; 
-            padding: 20px;
-            background-color: #2e2e2e; /* Koyu gri arka plan */
-            color: #ffffff; /* Beyaz yazı rengi */
-            font-family: sans-serif;
+            margin: 0; padding: 20px; background-color: #2e2e2e; color: #ffffff; font-family: sans-serif;
+        }
+        .tab-button-container {
+            margin-bottom: 20px; display: flex; gap: 10px;
+        }
+        .tab-button {
+            padding: 10px 15px; background-color: #555; color: white; border: none; cursor: pointer; border-radius: 5px;
         }
         .model-container {
-            width: 100%;
-            margin-bottom: 40px; /* Modeller arasına boşluk */
+            width: 100%; height: 600px; 
         }
         .model-viewer-box {
-            width: 100%;
-            height: 500px; /* Modelin görüneceği alanın yüksekliği */
-            border: 1px solid #555;
-            border-radius: 8px;
-            --poster-color: #444; /* Yüklenirken görünen arka plan */
+            width: 100%; height: 100%; display: none; border: 1px solid #555; border-radius: 8px;
         }
-        h2 {
-            border-bottom: 1px solid #555;
-            padding-bottom: 10px;
+        .model-viewer-box.active {
+            display: block;
         }
     </style>
 </head>
@@ -35,48 +31,54 @@
 
     <h1>🚀 Uzay Gemisi Koleksiyonu</h1>
 
+    <div class="tab-button-container">
+        <button class="tab-button" onclick="showModel('mother_spaceship')">Mother Spaceship</button>
+        <button class="tab-button" onclick="showModel('endor_battlecruiser')">Endor Battlecruiser</button>
+        <button class="tab-button" onclick="showModel('prometheus')">Prometheus NX59650</button>
+    </div>
+
     <div class="model-container">
-        <h2>1. Mother Spaceship</h2>
         <model-viewer
-            class="model-viewer-box"
+            id="mother_spaceship"
+            class="model-viewer-box active"  
+            
             src="./mother_spaceship.glb" 
-            alt="Ana Uzay Gemisi"
-            camera-controls 
-            auto-rotate
-            shadow-intensity="1" 
-            exposure="1.2"
-        >
-        </model-viewer>
-    </div>
+            
+            alt="Ana Uzay Gemisi" camera-controls auto-rotate shadow-intensity="1" exposure="1.2"
+        ></model-viewer>
 
-    <div class="model-container">
-        <h2>2. Endor Battlecruiser</h2>
         <model-viewer
+            id="endor_battlecruiser"
             class="model-viewer-box"
+            
             src="./Endor Battlecruiser.glb" 
-            alt="Endor Savaş Kruvazörü"
-            camera-controls 
-            auto-rotate
-            shadow-intensity="1" 
-            exposure="1.2"
-        >
-        </model-viewer>
-    </div>
+            
+            alt="Endor Savaş Kruvazörü" camera-controls auto-rotate shadow-intensity="1" exposure="1.2"
+        ></model-viewer>
 
-    <div class="model-container">
-        <h2>3. Prometheus NX59650</h2>
         <model-viewer
+            id="prometheus"
             class="model-viewer-box"
+            
             src="./4c275vutixts-PrometheusNX59650.glb" 
-            alt="Prometheus NX59650"
-            camera-controls 
-            auto-rotate
-            shadow-intensity="1" 
-            exposure="1.2"
-        >
-        </model-viewer>
+            
+            alt="Prometheus NX59650" camera-controls auto-rotate shadow-intensity="1" exposure="1.2"
+        ></model-viewer>
     </div>
 
-</body>
+    <script>
+        function showModel(modelId) {
+            const models = document.querySelectorAll('.model-viewer-box');
+            models.forEach(model => {
+                model.classList.remove('active');
+            });
 
+            const activeModel = document.getElementById(modelId);
+            if (activeModel) {
+                activeModel.classList.add('active');
+            }
+        }
+    </script>
+</body>
 </html>
+
